@@ -17,13 +17,15 @@ sns.set_color_codes()
 
 
 STATE_NAMES = ['wave']
-PHASE_NUM = 5
+PHASE_NUM = 9   #初始为5 hangzhou为9
 
 
 class LargeGridPhase(PhaseMap):
     def __init__(self):
         phases = ['GGgrrrGGgrrr', 'rrrGrGrrrGrG', 'rrrGGrrrrGGr',
                   'rrrGGGrrrrrr', 'rrrrrrrrrGGG']
+        # phases = ['GrrGrrGrrGrr', 'GrrGGrGrrGGr', 'GGrGrrGGrGrr', 'GrrGrGGrrGrG', 'GrGGrrGrGGrr',
+        #           'GrrGrrGrrGGG', 'GrrGGGGrrGrr', 'GrrGrrGGGGrr', 'GGGGrrGrrGrr']
         self.phases = {PHASE_NUM: PhaseSet(phases)}
 
 
@@ -57,60 +59,107 @@ class LargeGridEnv(TrafficSimulator):
 
     def _init_neighbor_map(self):
         neighbor_map = {}
+        # # corner nodes
+        # neighbor_map['nt1'] = ['nt6', 'nt2']
+        # neighbor_map['nt5'] = ['nt10', 'nt4']
+        # neighbor_map['nt21'] = ['nt22', 'nt16']
+        # neighbor_map['nt25'] = ['nt20', 'nt24']
+        # # edge nodes
+        # neighbor_map['nt2'] = ['nt7', 'nt3', 'nt1']
+        # neighbor_map['nt3'] = ['nt8', 'nt4', 'nt2']
+        # neighbor_map['nt4'] = ['nt9', 'nt5', 'nt3']
+        # neighbor_map['nt22'] = ['nt23', 'nt17', 'nt21']
+        # neighbor_map['nt23'] = ['nt24', 'nt18', 'nt22']
+        # neighbor_map['nt24'] = ['nt25', 'nt19', 'nt23']
+        # neighbor_map['nt10'] = ['nt15', 'nt5', 'nt9']
+        # neighbor_map['nt15'] = ['nt20', 'nt10', 'nt14']
+        # neighbor_map['nt20'] = ['nt25', 'nt15', 'nt19']
+        # neighbor_map['nt6'] = ['nt11', 'nt7', 'nt1']
+        # neighbor_map['nt11'] = ['nt16', 'nt12', 'nt6']
+        # neighbor_map['nt16'] = ['nt21', 'nt17', 'nt11']
+        # # internal nodes
+        # for i in [7, 8, 9, 12, 13, 14, 17, 18, 19]:
+        #     n_node = 'nt' + str(i + 5)
+        #     s_node = 'nt' + str(i - 5)
+        #     w_node = 'nt' + str(i - 1)
+        #     e_node = 'nt' + str(i + 1)
+        #     cur_node = 'nt' + str(i)
+        #     neighbor_map[cur_node] = [n_node, e_node, s_node, w_node]
+
+        #hangzhou nodes
         # corner nodes
-        neighbor_map['nt1'] = ['nt6', 'nt2']
-        neighbor_map['nt5'] = ['nt10', 'nt4']
-        neighbor_map['nt21'] = ['nt22', 'nt16']
-        neighbor_map['nt25'] = ['nt20', 'nt24']
+        neighbor_map['intersection_4_1'] = ['intersection_3_1', 'intersection_4_2']
+        neighbor_map['intersection_1_4'] = ['intersection_2_4', 'intersection_1_3']
+        neighbor_map['intersection_4_4'] = ['intersection_3_4', 'intersection_4_3']
+        neighbor_map['intersection_1_1'] = ['intersection_2_1', 'intersection_1_2']
         # edge nodes
-        neighbor_map['nt2'] = ['nt7', 'nt3', 'nt1']
-        neighbor_map['nt3'] = ['nt8', 'nt4', 'nt2']
-        neighbor_map['nt4'] = ['nt9', 'nt5', 'nt3']
-        neighbor_map['nt22'] = ['nt23', 'nt17', 'nt21']
-        neighbor_map['nt23'] = ['nt24', 'nt18', 'nt22']
-        neighbor_map['nt24'] = ['nt25', 'nt19', 'nt23']
-        neighbor_map['nt10'] = ['nt15', 'nt5', 'nt9']
-        neighbor_map['nt15'] = ['nt20', 'nt10', 'nt14']
-        neighbor_map['nt20'] = ['nt25', 'nt15', 'nt19']
-        neighbor_map['nt6'] = ['nt11', 'nt7', 'nt1']
-        neighbor_map['nt11'] = ['nt16', 'nt12', 'nt6']
-        neighbor_map['nt16'] = ['nt21', 'nt17', 'nt11']
+        neighbor_map['intersection_1_2'] = ['intersection_1_1', 'intersection_2_2', 'intersection_1_3']
+        neighbor_map['intersection_1_3'] = ['intersection_1_2', 'intersection_2_3', 'intersection_1_4']
+        neighbor_map['intersection_2_4'] = ['intersection_1_4', 'intersection_2_3', 'intersection_3_4']
+        neighbor_map['intersection_3_4'] = ['intersection_2_4', 'intersection_3_3', 'intersection_4_4']
+        neighbor_map['intersection_4_3'] = ['intersection_4_4', 'intersection_3_3', 'intersection_4_2']
+        neighbor_map['intersection_4_2'] = ['intersection_4_3', 'intersection_3_2', 'intersection_4_1']
+        neighbor_map['intersection_3_1'] = ['intersection_2_1', 'intersection_3_2', 'intersection_4_1']
+        neighbor_map['intersection_2_1'] = ['intersection_1_1', 'intersection_2_2', 'intersection_3_1']
         # internal nodes
-        for i in [7, 8, 9, 12, 13, 14, 17, 18, 19]:
-            n_node = 'nt' + str(i + 5)
-            s_node = 'nt' + str(i - 5)
-            w_node = 'nt' + str(i - 1)
-            e_node = 'nt' + str(i + 1)
-            cur_node = 'nt' + str(i)
-            neighbor_map[cur_node] = [n_node, e_node, s_node, w_node]
+        neighbor_map['intersection_2_2'] = ['intersection_1_2', 'intersection_2_1',
+                                            'intersection_3_2', 'intersection_2_3']
+        neighbor_map['intersection_2_3'] = ['intersection_1_3', 'intersection_2_2',
+                                            'intersection_3_3', 'intersection_2_4']
+        neighbor_map['intersection_3_3'] = ['intersection_2_3', 'intersection_3_2',
+                                            'intersection_4_3', 'intersection_3_4']
+        neighbor_map['intersection_3_2'] = ['intersection_2_2', 'intersection_3_1',
+                                            'intersection_4_2', 'intersection_3_3']
+
         self.neighbor_map = neighbor_map
         self.neighbor_mask = np.zeros((self.n_node, self.n_node))
-        for i in range(self.n_node):
-            for nnode in neighbor_map['nt%d' % (i+1)]:
-                ni = self.node_names.index(nnode)
-                self.neighbor_mask[i, ni] = 1
+
+        #最初的初始化neighbor_mask
+        # for i in range(self.n_node):
+        #     for nnode in neighbor_map['nt%d' % (i+1)]:
+        #         ni = self.node_names.index(nnode)
+        #         self.neighbor_mask[i, ni] = 1
+
+        #hangzhou neighbor_mask 好像要改的东西还挺多的
+        for i in range(int(self.n_node ** 0.5)):
+            for j in range(int(self.n_node ** 0.5)):
+                for nnode in neighbor_map['intersection_%d_%d' % (i+1, j+1)]:
+                    ni = self.node_names.index(nnode)
+                    self.neighbor_mask[int(i * self.n_node ** 0.5 + j), ni] = 1
         logging.info('neighbor mask:\n %r' % self.neighbor_mask)
 
     def _init_distance_map(self):
-        block0 = np.array([[0,1,2,3,4],[1,0,1,2,3],[2,1,0,1,2],[3,2,1,0,1],[4,3,2,1,0]])
+        # block0 = np.array([[0,1,2,3,4],[1,0,1,2,3],[2,1,0,1,2],[3,2,1,0,1],[4,3,2,1,0]])
+        # block1 = block0 + 1
+        # block2 = block0 + 2
+        # block3 = block0 + 3
+        # block4 = block0 + 4
+        # row0 = np.hstack([block0, block1, block2, block3, block4])
+        # row1 = np.hstack([block1, block0, block1, block2, block3])
+        # row2 = np.hstack([block2, block1, block0, block1, block2])
+        # row3 = np.hstack([block3, block2, block1, block0, block1])
+        # row4 = np.hstack([block4, block3, block2, block1, block0])
+        # self.distance_mask = np.vstack([row0, row1, row2, row3, row4])
+
+        # hangzhou
+        block0 = np.array([[0, 1, 2, 3], [1, 0, 1, 2], [2, 1, 0, 1], [3, 2, 1, 0]])
         block1 = block0 + 1
         block2 = block0 + 2
         block3 = block0 + 3
-        block4 = block0 + 4
-        row0 = np.hstack([block0, block1, block2, block3, block4])
-        row1 = np.hstack([block1, block0, block1, block2, block3])
-        row2 = np.hstack([block2, block1, block0, block1, block2])
-        row3 = np.hstack([block3, block2, block1, block0, block1])
-        row4 = np.hstack([block4, block3, block2, block1, block0])
-        self.distance_mask = np.vstack([row0, row1, row2, row3, row4]) 
+        row0 = np.hstack([block0, block1, block2, block3])
+        row1 = np.hstack([block1, block0, block1, block2])
+        row2 = np.hstack([block2, block1, block0, block1])
+        row3 = np.hstack([block3, block2, block1, block0])
+        self.distance_mask = np.vstack([row0, row1, row2, row3])
 
     def _init_map(self):
-        self.node_names = ['nt%d' % i for i in range(1, 26)]
-        self.n_node = 25
+        # self.node_names = ['nt%d' % i for i in range(1, 26)]
+        self.node_names = ['intersection_%d_%d' % (i, j) for i in range(1, 5) for j in range(1, 5)]
+        self.n_node = 16    #初始为：25 hangzhou为16
         self._init_neighbor_map()
         # for spatial discount
         self._init_distance_map()
-        self.max_distance = 8
+        self.max_distance = 6   #初始为：8 hangzhou为6
         self.phase_map = LargeGridPhase()
         self.state_names = STATE_NAMES
 

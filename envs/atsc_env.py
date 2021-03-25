@@ -10,6 +10,9 @@ from sumolib import checkBinary
 import time
 import traci
 import xml.etree.cElementTree as ET
+import cityflow
+import os
+import json
 
 DEFAULT_PORT = 8000
 SEC_IN_MS = 1000
@@ -97,6 +100,7 @@ class TrafficSimulator:
         self.train_mode = True
         test_seeds = config.get('test_seeds').split(',')
         test_seeds = [int(s) for s in test_seeds]
+        self.base_dir = config.get('base_dir')
         self._init_map()
         self.init_data(is_record, record_stats, output_path)
         self.init_test_seeds(test_seeds)
@@ -207,7 +211,9 @@ class TrafficSimulator:
         return state, reward, done, global_reward
 
     def terminate(self):
-        self.sim.close()
+        # self.sim.close()
+        #hangzhou直接注释？调用下reset吧
+        self.sim.reset(seed=False) #Reset random seed if seed is set to True
 
     def update_fingerprint(self, policy):
         for node_name, pi in zip(self.node_names, policy):
@@ -295,36 +301,70 @@ class TrafficSimulator:
         self.state_names = None
         raise NotImplementedError()
 
+    # def _init_nodes(self):
+    #     nodes = {}
+    #     tl_nodes = self.sim.trafficlight.getIDList()
+    #     for node_name in self.node_names:
+    #         if node_name not in tl_nodes:
+    #             logging.error('node %s can not be found!' % node_name)
+    #             exit(1)
+    #         neighbor = self.neighbor_map[node_name]
+    #         nodes[node_name] = Node(node_name,
+    #                                 neighbor=neighbor,
+    #                                 control=True)
+    #         # controlled lanes: l:j,i_k
+    #         lanes_in = self.sim.trafficlight.getControlledLanes(node_name)
+    #         ilds_in = []
+    #         lanes_cap = []
+    #         for lane_name in lanes_in:
+    #             if self.name == 'atsc_real_net':
+    #                 cur_ilds_in = [lane_name]
+    #                 if (node_name, lane_name) in self.extended_lanes:
+    #                     cur_ilds_in += self.extended_lanes[(node_name, lane_name)]
+    #                 ilds_in.append(cur_ilds_in)
+    #                 cur_cap = 0
+    #                 for ild_name in cur_ilds_in:
+    #                     cur_cap += self.sim.lane.getLength(ild_name)
+    #                 lanes_cap.append(cur_cap/float(VEH_LEN_M))
+    #             else:
+    #                 ilds_in.append(lane_name)
+    #         nodes[node_name].ilds_in = ilds_in
+    #         if self.name == 'atsc_real_net':
+    #             nodes[node_name].lanes_capacity = lanes_cap
+    #     self.nodes = nodes
+    #     s = 'Env: init %d node information:\n' % len(self.node_names)
+    #     for node_name in self.node_names:
+    #         s += node_name + ':\n'
+    #         node = self.nodes[node_name]
+    #         s += '\tneigbor: %r\n' % node.neighbor
+    #         s += '\tilds_in: %r\n' % node.ilds_in
+    #     logging.info(s)
+    #     self._init_action_space()
+    #     self._init_state_space()
+
+    #hangzhou
     def _init_nodes(self):
         nodes = {}
-        tl_nodes = self.sim.trafficlight.getIDList()
         for node_name in self.node_names:
-            if node_name not in tl_nodes:
-                logging.error('node %s can not be found!' % node_name)
-                exit(1)
             neighbor = self.neighbor_map[node_name]
             nodes[node_name] = Node(node_name,
                                     neighbor=neighbor,
                                     control=True)
             # controlled lanes: l:j,i_k
-            lanes_in = self.sim.trafficlight.getControlledLanes(node_name)
+            roads = []
+            lanes_in = []
+            roads.append(node_name.replace('intersection', 'road')[0:-1] + str(int(node_name[-1]) + 1) + '_3_')  # north
+            roads.append(node_name.replace('intersection', 'road')[0:-3] + str(int(node_name[-3]) + 1) + node_name[-2:] + '_2_')  # east
+            roads.append(node_name.replace('intersection', 'road')[0:-1] + str(int(node_name[-1]) - 1) + '_1_')  # south
+            roads.append(node_name.replace('intersection', 'road')[0:-3] + str(int(node_name[-3]) - 1) + node_name[-2:] + '_0_')  # west
+            for n_n in roads:
+                for i in range(2, -1, -1):
+                    lanes_in.append(n_n + str(i))
             ilds_in = []
             lanes_cap = []
             for lane_name in lanes_in:
-                if self.name == 'atsc_real_net':
-                    cur_ilds_in = [lane_name]
-                    if (node_name, lane_name) in self.extended_lanes:
-                        cur_ilds_in += self.extended_lanes[(node_name, lane_name)]
-                    ilds_in.append(cur_ilds_in)
-                    cur_cap = 0
-                    for ild_name in cur_ilds_in:
-                        cur_cap += self.sim.lane.getLength(ild_name)
-                    lanes_cap.append(cur_cap/float(VEH_LEN_M))
-                else:
-                    ilds_in.append(lane_name)
+                ilds_in.append(lane_name)
             nodes[node_name].ilds_in = ilds_in
-            if self.name == 'atsc_real_net':
-                nodes[node_name].lanes_capacity = lanes_cap
         self.nodes = nodes
         s = 'Env: init %d node information:\n' % len(self.node_names)
         for node_name in self.node_names:
@@ -339,27 +379,51 @@ class TrafficSimulator:
     def _init_policy(self):
         return [np.ones(self.n_a_ls[i]) / self.n_a_ls[i] for i in range(self.n_agent)]
 
+    # def _init_sim(self, seed, gui=False):
+    #     sumocfg_file = self._init_sim_config(seed)
+    #     if gui:
+    #         app = 'sumo-gui'
+    #     else:
+    #         app = 'sumo'
+    #     command = [checkBinary(app), '-c', sumocfg_file]
+    #     command += ['--seed', str(seed)]
+    #     command += ['--remote-port', str(self.port)]
+    #     command += ['--no-step-log', 'True']
+    #     command += ['--time-to-teleport', '600'] # long teleport for safety
+    #     command += ['--no-warnings', 'True']
+    #     command += ['--duration-log.disable', 'True']
+    #     # collect trip info if necessary
+    #     if self.is_record:
+    #         command += ['--tripinfo-output',
+    #                     self.output_path + ('%s_%s_trip.xml' % (self.name, self.agent))]
+    #     subprocess.Popen(command)
+    #     # wait 1s to establish the traci server
+    #     time.sleep(1)
+    #     self.sim = traci.connect(port=self.port)
+
+    #hangzhou
     def _init_sim(self, seed, gui=False):
-        sumocfg_file = self._init_sim_config(seed)
-        if gui:
-            app = 'sumo-gui'
-        else:
-            app = 'sumo'
-        command = [checkBinary(app), '-c', sumocfg_file]
-        command += ['--seed', str(seed)]
-        command += ['--remote-port', str(self.port)]
-        command += ['--no-step-log', 'True']
-        command += ['--time-to-teleport', '600'] # long teleport for safety
-        command += ['--no-warnings', 'True']
-        command += ['--duration-log.disable', 'True']
-        # collect trip info if necessary
-        if self.is_record:
-            command += ['--tripinfo-output',
-                        self.output_path + ('%s_%s_trip.xml' % (self.name, self.agent))]
-        subprocess.Popen(command)
-        # wait 1s to establish the traci server
+        cityflow_config = {
+            "interval": 1,
+            "seed": seed,
+            "laneChange": False,
+            "dir": self.base_dir + "\\",
+            "roadnetFile": "roadnet_{0}.json".format("4_4"),
+            "flowFile": "anon_4_4_hangzhou_real.json",
+            "rlTrafficLight": True,
+            "saveReplay": True,
+            "roadnetLogFile": "roadnetLogFile.json",
+            "replayLogFile": "replayLogFile.txt"
+        }
+        print("=========================")
+        # print(cityflow_config)
+
+        with open(os.path.join(self.base_dir, "cityflow.config"), "w") as json_file:
+            json.dump(cityflow_config, json_file)  # json.dump() 和 json.load() 来编码和解码JSON数据,用于处理文件。
+        self.sim = cityflow.Engine(os.path.join(self.base_dir, "cityflow.config"), thread_num = 1)
+        self.sim.reset()
         time.sleep(1)
-        self.sim = traci.connect(port=self.port)
+
 
     def _init_sim_config(self):
         # needs to be overwriteen
@@ -382,16 +446,23 @@ class TrafficSimulator:
 
     def _measure_reward_step(self):
         rewards = []
+        #hangzhou
+        lane_wv_c =self.sim.get_lane_waiting_vehicle_count()
+
         for node_name in self.node_names:
             queues = []
             waits = []
+            # v_info = ''
             for ild in self.nodes[node_name].ilds_in:
                 if self.obj in ['queue', 'hybrid']:
                     if self.name == 'atsc_real_net':
                         cur_queue = self.sim.lane.getLastStepHaltingNumber(ild[0])
                         cur_queue = min(cur_queue, QUEUE_MAX)
                     else:
-                        cur_queue = self.sim.lanearea.getLastStepHaltingNumber(ild)
+                        # cur_queue = self.sim.lanearea.getLastStepHaltingNumber(ild)
+                        #hangzhou
+                        cur_queue = lane_wv_c[ild]
+                        # v_info += 'else: cur_queue\n %r' % cur_queue
                     queues.append(cur_queue)
                 if self.obj in ['wait', 'hybrid']:
                     max_pos = 0
@@ -406,6 +477,7 @@ class TrafficSimulator:
                             max_pos = car_pos
                             car_wait = self.sim.vehicle.getWaitingTime(vid)
                     waits.append(car_wait)
+            # logging.info(v_info)
             queue = np.sum(np.array(queues)) if len(queues) else 0
             wait = np.sum(np.array(waits)) if len(waits) else 0
             if self.obj == 'queue':
@@ -418,6 +490,10 @@ class TrafficSimulator:
         return np.array(rewards)
 
     def _measure_state_step(self):
+        # v_info = ''
+        # hangzhou
+        lane_vc = self.sim.get_lane_vehicle_count()
+
         for node_name in self.node_names:
             node = self.nodes[node_name]
             for state_name in self.state_names:
@@ -431,7 +507,10 @@ class TrafficSimulator:
                             cur_wave /= node.lanes_capacity[k]
                             # cur_wave = min(1.5, cur_wave / QUEUE_MAX)
                         else:
-                            cur_wave = self.sim.lanearea.getLastStepVehicleNumber(ild)
+                            # cur_wave = self.sim.lanearea.getLastStepVehicleNumber(ild)
+                            # hangzhou
+                            cur_wave = lane_vc[ild]
+                            # v_info += 'node_name: %r,ild: %r, cur_wave: %r \n' % (node_name, ild, cur_wave)
                         cur_state.append(cur_wave)
                     cur_state = np.array(cur_state)
                 elif state_name == 'wait':
@@ -460,6 +539,7 @@ class TrafficSimulator:
                     node.wave_state = norm_cur_state
                 else:
                     node.wait_state = norm_cur_state
+        # logging.info(v_info)
 
     def _measure_traffic_step(self):
         cars = self.sim.vehicle.getIDList()
@@ -511,14 +591,26 @@ class TrafficSimulator:
 
     def _set_phase(self, action, phase_type, phase_duration):
         for node_name, a in zip(self.node_names, list(action)):
-            phase = self._get_node_phase(a, node_name, phase_type)
-            self.sim.trafficlight.setRedYellowGreenState(node_name, phase)
-            self.sim.trafficlight.setPhaseDuration(node_name, phase_duration)
+            # phase = self._get_node_phase(a, node_name, phase_type)
+            # self.sim.trafficlight.setRedYellowGreenState(node_name, phase)
+            # self.sim.trafficlight.setPhaseDuration(node_name, phase_duration)
+
+            #hangzhou
+            if phase_type == 'yellow':
+                if (self.nodes[node_name].prev_action < 0) or (a == self.nodes[node_name].prev_action):
+                    self.sim.set_tl_phase(node_name, a)
+                else:
+                    self.sim.set_tl_phase(node_name, 0)
+            else:
+                self.sim.set_tl_phase(node_name, a)
 
     def _simulate(self, num_step):
         # reward = np.zeros(len(self.control_node_names))
         for _ in range(num_step):
-            self.sim.simulationStep()
+            # self.sim.simulationStep()
+
+            #hangzhou
+            self.sim.next_step()
             self.cur_sec += 1
             if self.is_record:
                 self._measure_traffic_step()

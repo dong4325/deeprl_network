@@ -20,7 +20,7 @@ from utils import (Counter, Trainer, Tester, Evaluator,
 
 def parse_args():
     default_base_dir = '/Users/tchu/Documents/rl_test/deeprl_dist/ia2c_grid_0.9'
-    default_config_dir = './config/config_ia2c_grid.ini'
+    default_config_dir = '.\\config\\config_ia2c_grid.ini'
     parser = argparse.ArgumentParser()
     parser.add_argument('--base-dir', type=str, required=False,
                         default=default_base_dir, help="experiment base dir")
@@ -83,6 +83,10 @@ def train(args):
     copy_file(config_dir, dirs['data'])
     config = configparser.ConfigParser()
     config.read(config_dir)
+
+    config.set('ENV_CONFIG', 'base_dir', base_dir)
+    copy_file("data\\Hangzhou\\4_4\\anon_4_4_hangzhou_real.json", base_dir + '\\')
+    copy_file("data\\Hangzhou\\4_4\\roadnet_4_4.json", base_dir + '\\')
 
     # init env
     env = init_env(config['ENV_CONFIG'])

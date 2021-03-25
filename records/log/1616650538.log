@@ -1,0 +1,297 @@
+2021-03-25 13:35:38,671 [INFO] neighbor mask:
+ array([[0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0.],
+       [1., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+       [0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0., 0.],
+       [0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0., 0., 0., 0.],
+       [0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0.],
+       [0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 1., 0., 0., 1., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 0., 0., 0., 1.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1., 0., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 1., 0.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0., 1.],
+       [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 1., 0.]])
+2021-03-25 13:35:39,752 [INFO] Env: init 16 node information:
+intersection_1_1:
+	neigbor: ['intersection_2_1', 'intersection_1_2']
+	ilds_in: ['road_1_2_3_2', 'road_1_2_3_1', 'road_1_2_3_0', 'road_2_1_2_2', 'road_2_1_2_1', 'road_2_1_2_0', 'road_1_0_1_2', 'road_1_0_1_1', 'road_1_0_1_0', 'road_0_1_0_2', 'road_0_1_0_1', 'road_0_1_0_0']
+intersection_1_2:
+	neigbor: ['intersection_1_1', 'intersection_2_2', 'intersection_1_3']
+	ilds_in: ['road_1_3_3_2', 'road_1_3_3_1', 'road_1_3_3_0', 'road_2_2_2_2', 'road_2_2_2_1', 'road_2_2_2_0', 'road_1_1_1_2', 'road_1_1_1_1', 'road_1_1_1_0', 'road_0_2_0_2', 'road_0_2_0_1', 'road_0_2_0_0']
+intersection_1_3:
+	neigbor: ['intersection_1_2', 'intersection_2_3', 'intersection_1_4']
+	ilds_in: ['road_1_4_3_2', 'road_1_4_3_1', 'road_1_4_3_0', 'road_2_3_2_2', 'road_2_3_2_1', 'road_2_3_2_0', 'road_1_2_1_2', 'road_1_2_1_1', 'road_1_2_1_0', 'road_0_3_0_2', 'road_0_3_0_1', 'road_0_3_0_0']
+intersection_1_4:
+	neigbor: ['intersection_2_4', 'intersection_1_3']
+	ilds_in: ['road_1_5_3_2', 'road_1_5_3_1', 'road_1_5_3_0', 'road_2_4_2_2', 'road_2_4_2_1', 'road_2_4_2_0', 'road_1_3_1_2', 'road_1_3_1_1', 'road_1_3_1_0', 'road_0_4_0_2', 'road_0_4_0_1', 'road_0_4_0_0']
+intersection_2_1:
+	neigbor: ['intersection_1_1', 'intersection_2_2', 'intersection_3_1']
+	ilds_in: ['road_2_2_3_2', 'road_2_2_3_1', 'road_2_2_3_0', 'road_3_1_2_2', 'road_3_1_2_1', 'road_3_1_2_0', 'road_2_0_1_2', 'road_2_0_1_1', 'road_2_0_1_0', 'road_1_1_0_2', 'road_1_1_0_1', 'road_1_1_0_0']
+intersection_2_2:
+	neigbor: ['intersection_1_2', 'intersection_2_1', 'intersection_3_2', 'intersection_2_3']
+	ilds_in: ['road_2_3_3_2', 'road_2_3_3_1', 'road_2_3_3_0', 'road_3_2_2_2', 'road_3_2_2_1', 'road_3_2_2_0', 'road_2_1_1_2', 'road_2_1_1_1', 'road_2_1_1_0', 'road_1_2_0_2', 'road_1_2_0_1', 'road_1_2_0_0']
+intersection_2_3:
+	neigbor: ['intersection_1_3', 'intersection_2_2', 'intersection_3_3', 'intersection_2_4']
+	ilds_in: ['road_2_4_3_2', 'road_2_4_3_1', 'road_2_4_3_0', 'road_3_3_2_2', 'road_3_3_2_1', 'road_3_3_2_0', 'road_2_2_1_2', 'road_2_2_1_1', 'road_2_2_1_0', 'road_1_3_0_2', 'road_1_3_0_1', 'road_1_3_0_0']
+intersection_2_4:
+	neigbor: ['intersection_1_4', 'intersection_2_3', 'intersection_3_4']
+	ilds_in: ['road_2_5_3_2', 'road_2_5_3_1', 'road_2_5_3_0', 'road_3_4_2_2', 'road_3_4_2_1', 'road_3_4_2_0', 'road_2_3_1_2', 'road_2_3_1_1', 'road_2_3_1_0', 'road_1_4_0_2', 'road_1_4_0_1', 'road_1_4_0_0']
+intersection_3_1:
+	neigbor: ['intersection_2_1', 'intersection_3_2', 'intersection_4_1']
+	ilds_in: ['road_3_2_3_2', 'road_3_2_3_1', 'road_3_2_3_0', 'road_4_1_2_2', 'road_4_1_2_1', 'road_4_1_2_0', 'road_3_0_1_2', 'road_3_0_1_1', 'road_3_0_1_0', 'road_2_1_0_2', 'road_2_1_0_1', 'road_2_1_0_0']
+intersection_3_2:
+	neigbor: ['intersection_2_2', 'intersection_3_1', 'intersection_4_2', 'intersection_3_3']
+	ilds_in: ['road_3_3_3_2', 'road_3_3_3_1', 'road_3_3_3_0', 'road_4_2_2_2', 'road_4_2_2_1', 'road_4_2_2_0', 'road_3_1_1_2', 'road_3_1_1_1', 'road_3_1_1_0', 'road_2_2_0_2', 'road_2_2_0_1', 'road_2_2_0_0']
+intersection_3_3:
+	neigbor: ['intersection_2_3', 'intersection_3_2', 'intersection_4_3', 'intersection_3_4']
+	ilds_in: ['road_3_4_3_2', 'road_3_4_3_1', 'road_3_4_3_0', 'road_4_3_2_2', 'road_4_3_2_1', 'road_4_3_2_0', 'road_3_2_1_2', 'road_3_2_1_1', 'road_3_2_1_0', 'road_2_3_0_2', 'road_2_3_0_1', 'road_2_3_0_0']
+intersection_3_4:
+	neigbor: ['intersection_2_4', 'intersection_3_3', 'intersection_4_4']
+	ilds_in: ['road_3_5_3_2', 'road_3_5_3_1', 'road_3_5_3_0', 'road_4_4_2_2', 'road_4_4_2_1', 'road_4_4_2_0', 'road_3_3_1_2', 'road_3_3_1_1', 'road_3_3_1_0', 'road_2_4_0_2', 'road_2_4_0_1', 'road_2_4_0_0']
+intersection_4_1:
+	neigbor: ['intersection_3_1', 'intersection_4_2']
+	ilds_in: ['road_4_2_3_2', 'road_4_2_3_1', 'road_4_2_3_0', 'road_5_1_2_2', 'road_5_1_2_1', 'road_5_1_2_0', 'road_4_0_1_2', 'road_4_0_1_1', 'road_4_0_1_0', 'road_3_1_0_2', 'road_3_1_0_1', 'road_3_1_0_0']
+intersection_4_2:
+	neigbor: ['intersection_4_3', 'intersection_3_2', 'intersection_4_1']
+	ilds_in: ['road_4_3_3_2', 'road_4_3_3_1', 'road_4_3_3_0', 'road_5_2_2_2', 'road_5_2_2_1', 'road_5_2_2_0', 'road_4_1_1_2', 'road_4_1_1_1', 'road_4_1_1_0', 'road_3_2_0_2', 'road_3_2_0_1', 'road_3_2_0_0']
+intersection_4_3:
+	neigbor: ['intersection_4_4', 'intersection_3_3', 'intersection_4_2']
+	ilds_in: ['road_4_4_3_2', 'road_4_4_3_1', 'road_4_4_3_0', 'road_5_3_2_2', 'road_5_3_2_1', 'road_5_3_2_0', 'road_4_2_1_2', 'road_4_2_1_1', 'road_4_2_1_0', 'road_3_3_0_2', 'road_3_3_0_1', 'road_3_3_0_0']
+intersection_4_4:
+	neigbor: ['intersection_3_4', 'intersection_4_3']
+	ilds_in: ['road_4_5_3_2', 'road_4_5_3_1', 'road_4_5_3_0', 'road_5_4_2_2', 'road_5_4_2_1', 'road_5_4_2_0', 'road_4_3_1_2', 'road_4_3_1_1', 'road_4_3_1_0', 'road_3_4_0_2', 'road_3_4_0_1', 'road_3_4_0_0']
+
+2021-03-25 13:35:39,755 [INFO] Training: a dim [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5], agent dim: 16
+2021-03-25 13:35:39,755 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\models.py:106: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2021-03-25 13:35:39,756 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\models.py:107: The name tf.set_random_seed is deprecated. Please use tf.compat.v1.set_random_seed instead.
+
+2021-03-25 13:35:39,758 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\models.py:108: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+2021-03-25 13:35:39,759 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\models.py:109: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2021-03-25 13:35:40,905 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:89: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+2021-03-25 13:35:40,916 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:97: The name tf.variable_scope is deprecated. Please use tf.compat.v1.variable_scope instead.
+
+2021-03-25 13:35:40,980 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\utils.py:69: The name tf.get_variable is deprecated. Please use tf.compat.v1.get_variable instead.
+
+2021-03-25 13:36:09,276 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\models.py:111: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2021-03-25 13:36:09,411 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:25: The name tf.log is deprecated. Please use tf.math.log instead.
+
+2021-03-25 13:36:09,429 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:32: The name tf.trainable_variables is deprecated. Please use tf.compat.v1.trainable_variables instead.
+
+2021-03-25 13:36:09,524 [WARNING] From C:\Users\dong4\AppData\Roaming\Python\Python36\site-packages\tensorflow_core\python\ops\math_grad.py:1424: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2021-03-25 13:36:12,644 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:37: The name tf.train.RMSPropOptimizer is deprecated. Please use tf.compat.v1.train.RMSPropOptimizer instead.
+
+2021-03-25 13:36:12,646 [WARNING] From C:\Users\dong4\AppData\Roaming\Python\Python36\site-packages\tensorflow_core\python\training\rmsprop.py:119: calling Ones.__init__ (from tensorflow.python.ops.init_ops) with dtype is deprecated and will be removed in a future version.
+Instructions for updating:
+Call initializer instance with the dtype argument instead of passing it to the constructor
+2021-03-25 13:36:12,741 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:42: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+2021-03-25 13:36:12,748 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\policies.py:48: The name tf.summary.merge is deprecated. Please use tf.compat.v1.summary.merge instead.
+
+2021-03-25 13:37:00,430 [WARNING] From D:\Workspaces\PyCharm\college\deeprl_network\agents\models.py:116: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2021-03-25 13:37:05,911 [WARNING] From main.py:106: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+2021-03-25 13:37:07,000 [INFO] node_name: 'intersection_1_1',ild: 'road_1_2_3_2', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_1_2_3_1', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_1_2_3_0', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_2_1_2_2', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_2_1_2_1', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_2_1_2_0', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_1_0_1_2', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_1_0_1_1', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_1_0_1_0', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_0_1_0_2', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_0_1_0_1', cur_wave: 0 
+node_name: 'intersection_1_1',ild: 'road_0_1_0_0', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_1_3_3_2', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_1_3_3_1', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_1_3_3_0', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_2_2_2_2', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_2_2_2_1', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_2_2_2_0', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_1_1_1_2', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_1_1_1_1', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_1_1_1_0', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_0_2_0_2', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_0_2_0_1', cur_wave: 0 
+node_name: 'intersection_1_2',ild: 'road_0_2_0_0', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_1_4_3_2', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_1_4_3_1', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_1_4_3_0', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_2_3_2_2', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_2_3_2_1', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_2_3_2_0', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_1_2_1_2', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_1_2_1_1', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_1_2_1_0', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_0_3_0_2', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_0_3_0_1', cur_wave: 0 
+node_name: 'intersection_1_3',ild: 'road_0_3_0_0', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_1_5_3_2', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_1_5_3_1', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_1_5_3_0', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_2_4_2_2', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_2_4_2_1', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_2_4_2_0', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_1_3_1_2', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_1_3_1_1', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_1_3_1_0', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_0_4_0_2', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_0_4_0_1', cur_wave: 0 
+node_name: 'intersection_1_4',ild: 'road_0_4_0_0', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_2_2_3_2', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_2_2_3_1', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_2_2_3_0', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_3_1_2_2', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_3_1_2_1', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_3_1_2_0', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_2_0_1_2', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_2_0_1_1', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_2_0_1_0', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_1_1_0_2', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_1_1_0_1', cur_wave: 0 
+node_name: 'intersection_2_1',ild: 'road_1_1_0_0', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_2_3_3_2', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_2_3_3_1', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_2_3_3_0', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_3_2_2_2', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_3_2_2_1', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_3_2_2_0', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_2_1_1_2', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_2_1_1_1', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_2_1_1_0', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_1_2_0_2', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_1_2_0_1', cur_wave: 0 
+node_name: 'intersection_2_2',ild: 'road_1_2_0_0', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_2_4_3_2', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_2_4_3_1', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_2_4_3_0', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_3_3_2_2', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_3_3_2_1', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_3_3_2_0', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_2_2_1_2', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_2_2_1_1', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_2_2_1_0', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_1_3_0_2', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_1_3_0_1', cur_wave: 0 
+node_name: 'intersection_2_3',ild: 'road_1_3_0_0', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_2_5_3_2', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_2_5_3_1', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_2_5_3_0', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_3_4_2_2', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_3_4_2_1', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_3_4_2_0', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_2_3_1_2', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_2_3_1_1', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_2_3_1_0', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_1_4_0_2', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_1_4_0_1', cur_wave: 0 
+node_name: 'intersection_2_4',ild: 'road_1_4_0_0', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_3_2_3_2', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_3_2_3_1', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_3_2_3_0', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_4_1_2_2', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_4_1_2_1', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_4_1_2_0', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_3_0_1_2', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_3_0_1_1', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_3_0_1_0', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_2_1_0_2', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_2_1_0_1', cur_wave: 0 
+node_name: 'intersection_3_1',ild: 'road_2_1_0_0', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_3_3_3_2', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_3_3_3_1', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_3_3_3_0', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_4_2_2_2', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_4_2_2_1', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_4_2_2_0', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_3_1_1_2', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_3_1_1_1', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_3_1_1_0', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_2_2_0_2', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_2_2_0_1', cur_wave: 0 
+node_name: 'intersection_3_2',ild: 'road_2_2_0_0', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_3_4_3_2', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_3_4_3_1', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_3_4_3_0', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_4_3_2_2', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_4_3_2_1', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_4_3_2_0', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_3_2_1_2', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_3_2_1_1', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_3_2_1_0', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_2_3_0_2', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_2_3_0_1', cur_wave: 0 
+node_name: 'intersection_3_3',ild: 'road_2_3_0_0', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_3_5_3_2', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_3_5_3_1', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_3_5_3_0', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_4_4_2_2', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_4_4_2_1', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_4_4_2_0', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_3_3_1_2', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_3_3_1_1', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_3_3_1_0', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_2_4_0_2', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_2_4_0_1', cur_wave: 0 
+node_name: 'intersection_3_4',ild: 'road_2_4_0_0', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_4_2_3_2', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_4_2_3_1', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_4_2_3_0', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_5_1_2_2', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_5_1_2_1', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_5_1_2_0', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_4_0_1_2', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_4_0_1_1', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_4_0_1_0', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_3_1_0_2', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_3_1_0_1', cur_wave: 0 
+node_name: 'intersection_4_1',ild: 'road_3_1_0_0', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_4_3_3_2', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_4_3_3_1', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_4_3_3_0', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_5_2_2_2', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_5_2_2_1', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_5_2_2_0', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_4_1_1_2', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_4_1_1_1', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_4_1_1_0', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_3_2_0_2', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_3_2_0_1', cur_wave: 0 
+node_name: 'intersection_4_2',ild: 'road_3_2_0_0', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_4_4_3_2', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_4_4_3_1', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_4_4_3_0', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_5_3_2_2', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_5_3_2_1', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_5_3_2_0', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_4_2_1_2', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_4_2_1_1', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_4_2_1_0', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_3_3_0_2', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_3_3_0_1', cur_wave: 0 
+node_name: 'intersection_4_3',ild: 'road_3_3_0_0', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_4_5_3_2', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_4_5_3_1', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_4_5_3_0', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_5_4_2_2', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_5_4_2_1', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_5_4_2_0', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_4_3_1_2', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_4_3_1_1', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_4_3_1_0', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_3_4_0_2', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_3_4_0_1', cur_wave: 0 
+node_name: 'intersection_4_4',ild: 'road_3_4_0_0', cur_wave: 0 
+
